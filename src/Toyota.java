@@ -4,4 +4,10 @@ public class Toyota extends Car
     {
         super("Toyota", model, price, fuel_consumption, top_speed);
     }
+
+    @Override
+    public void beep()
+    {
+        System.out.println("I'm a Toyota :)");
+    }
 }

@@ -27,4 +27,9 @@ public abstract class Car
     {
         return(this.get_model() + "\n" + this.get_specs());
     }
+
+    public void beep()
+    {
+        System.out.println("I'm a car :)");
+    }
 }

@@ -43,6 +43,14 @@ public class Main
         car_park.add_car(car2);
         car_park.add_car(car3);
 
+        System.out.println("\nPolymorphism implementation: ");
+        System.out.print("Honda 'beep' method called: ");
+        car1.beep();
+        System.out.print("Toyota 'beep' method called: ");
+        car2.beep();
+        System.out.print("Mercedes 'beep' method called: ");
+        car3.beep();
+        System.out.println();
 
         while(true)
         {

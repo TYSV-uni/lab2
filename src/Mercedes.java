@@ -4,4 +4,10 @@ public class Mercedes extends Car
     {
         super("Mercedes", model, price, fuel_consumption, top_speed);
     }
+
+    @Override
+    public void beep()
+    {
+        System.out.println("I'm a Mercedes :)");
+    }
 }
