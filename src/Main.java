@@ -6,6 +6,7 @@ public class Main
     {
         int x;
         Scanner sc = new Scanner(System.in);
+
         while(true)
             try
             {
@@ -26,8 +27,8 @@ public class Main
             catch(Exception e)
             {
                 System.out.println("Invalid input");
-                continue;
             }
+
         return x;
     }
 
