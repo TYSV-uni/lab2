@@ -51,7 +51,7 @@ public class Main
                             Displaying options
                             1.Brand and model
                             2.Full info
-                            Return to menu
+                            3.Return to menu
                             Enter:\s""", 1, 3))
                     {
                         case 1:
