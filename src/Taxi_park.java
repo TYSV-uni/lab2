@@ -14,9 +14,11 @@ public class Taxi_park
         cars.add(x);
     }
 
-    public void remove_car(Car x)
+    public boolean remove_car(String brand, String model)
     {
-        cars.remove(x);
+        int size_before = cars.size();
+        cars.removeIf(x -> (x.brand.equals(brand) && x.model.equals(model)));
+        return (size_before != cars.size());
     }
 
     public Taxi_park sort_by_fuel_consumption()

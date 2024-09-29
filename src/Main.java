@@ -1,34 +1,20 @@
-import java.util.Scanner;
-
 public class Main
 {
-    public static int get_int_in_range(String prompt, int min, int max)
+    // model args go as follows (couldn't think of a better solution)
+    //1 = Toyota
+    //2 = Honda
+    //3 = Mercedes
+    //other number = Generic car
+    public static Car car_from_console(int model)
     {
-        int x;
-        Scanner sc = new Scanner(System.in);
-
-        while(true)
-            try
-            {
-                System.out.print(prompt);
-                x = Integer.parseInt(sc.nextLine());
-                if (!(x >= min))
-                {
-                    System.out.println("Input should be bigger than " + min);
-                    continue;
-                }
-                else if (!(x <= max))
-                {
-                    System.out.println("Input should be smaller than " + max);
-                    continue;
-                }
-                break;
-            }
-            catch(Exception e)
-            {
-                System.out.println("Invalid input");
-            }
-
+        Car x = switch (model)
+        {
+            case 1 -> new Honda("-", 0, 0.0, 0);
+            case 2 -> new Toyota("-", 0, 0.0, 0);
+            case 3 -> new Mercedes("-", 0, 0.0, 0);
+            default -> new Car("-", "-", 0, 0.0, 0);
+        };
+        x.fill_car_info();
         return x;
     }
 
@@ -43,22 +29,44 @@ public class Main
         car_park.add_car(car2);
         car_park.add_car(car3);
 
-        System.out.println("\nPolymorphism implementation: ");
-        System.out.print("Honda 'beep' method called: ");
-        car1.beep();
-        System.out.print("Toyota 'beep' method called: ");
-        car2.beep();
-        System.out.print("Mercedes 'beep' method called: ");
-        car3.beep();
-        System.out.println();
+        System.out.println("\nThere are already 3 cars in the taxi park");
 
         while(true)
         {
-            switch (get_int_in_range("\nMain menu\n1.Display the Taxi park\n2.Display the Taxi park sorted by fuel consumption\n3.Display the value of the Taxi park\n4.Display cars based on the given speed range\n5.Exit\nEnter: ", 1, 5))
+            switch (Get_input.get_int_in_range("""
+                     
+                     Main menu
+                     1.Display the Taxi park
+                     2.Display the Taxi park sorted by fuel consumption
+                     3.Display the value of the Taxi park
+                     4.Display cars based on the given speed range
+                     5.Add a new car
+                     6.Remove a car
+                     7.Exit
+                     Enter:\s""", 1, 7))
             {
                 case 1:
-                    System.out.println("\nTaxi park:\n");
-                    car_park.display_cars_max();
+                    switch (Get_input.get_int_in_range("""
+                            
+                            Displaying options
+                            1.Brand and model
+                            2.Full info
+                            Return to menu
+                            Enter:\s""", 1, 3))
+                    {
+                        case 1:
+                            System.out.println("\n\tTaxi park:\n");
+                            car_park.display_cars_min();
+                            break;
+
+                        case 2:
+                            System.out.println("\n\tTaxi park:\n");
+                            car_park.display_cars_max();
+                            break;
+
+                        default:
+                            break;
+                    }
                     break;
 
                 case 2:
@@ -72,11 +80,11 @@ public class Main
                     break;
 
                 case 4:
-                    int lower_lim = get_int_in_range("Input the lower limit of speed:", 0, Integer.MAX_VALUE);
+                    int lower_lim = Get_input.get_int_in_range("Input the lower limit of speed:", 0, Integer.MAX_VALUE);
                     int upper_lim;
                     while (true)
                     {
-                        upper_lim = get_int_in_range("Input the upper limit of speed:", 0, Integer.MAX_VALUE);
+                        upper_lim = Get_input.get_int_in_range("Input the upper limit of speed:", 0, Integer.MAX_VALUE);
                         if (upper_lim < lower_lim)
                         {
                             System.out.println("Upper limit can't be less than lower limit.");
@@ -90,6 +98,30 @@ public class Main
                     break;
 
                 case 5:
+                    int choice = Get_input.get_int_in_range("""
+                    
+                    Adding a new car
+                    1.New Toyota
+                    2.New Honda
+                    3.New Mercedes
+                    4.Other brand
+                    5.Return to menu
+                    Enter:\s""", 1, 5);
+
+                    if (choice != 5)
+                        car_park.add_car(car_from_console(choice));
+                    break;
+
+                case 6:
+                    String brand = Get_input.get_string("Brand: ");
+                    String model = Get_input.get_string("Model: ");
+                    if (car_park.remove_car(brand, model))
+                        System.out.println("Car has been removed.");
+                    else
+                        System.out.println("Car not found.");
+                    break;
+
+                case 7:
                     System.out.println("You have exited the program.");
                     return;
             }

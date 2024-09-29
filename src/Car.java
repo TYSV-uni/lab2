@@ -1,4 +1,5 @@
-public abstract class Car
+
+public class Car
 {
     protected String brand, model;
     protected Double fuel_consumption;
@@ -28,8 +29,12 @@ public abstract class Car
         return(this.get_model() + "\n" + this.get_specs());
     }
 
-    public void beep()
+    public void fill_car_info()
     {
-        System.out.println("I'm a car :)");
+        this.brand = Get_input.get_string("Brand: ");
+        this.model = Get_input.get_string("Model: ");
+        this.price = Get_input.get_int_in_range("Price($): ", 0 , Integer.MAX_VALUE);
+        this.fuel_consumption = Get_input.get_double_in_range("Fuel consumption (l/100km): ", 0 , Double.MAX_VALUE);
+        this.top_speed =  Get_input.get_int_in_range("Top speed(km/h): ", 0, Integer.MAX_VALUE);
     }
 }
