@@ -9,8 +9,8 @@ public class Main
     {
         Car x = switch (model)
         {
-            case 1 -> new Honda("-", 0, 0.0, 0);
-            case 2 -> new Toyota("-", 0, 0.0, 0);
+            case 1 -> new Toyota("-", 0, 0.0, 0);
+            case 2 -> new Honda("-", 0, 0.0, 0);
             case 3 -> new Mercedes("-", 0, 0.0, 0);
             default -> new Car("-", "-", 0, 0.0, 0);
         };

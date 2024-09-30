@@ -1,4 +1,3 @@
-
 public class Car
 {
     protected String brand, model;
